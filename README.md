@@ -19,13 +19,21 @@ serving tiles using the OpenMapTiles schema.
 Fetch git submodules:
 
 ```bash
-git submodule update --init
+$ git clone https://github.com/johngian/openmaptiles-tegola.git
+$ git submodule update --init
+```
+
+#### Build openmaptiles-tools
+
+```bash
+$ cd vendor/openmaptiles-tools
+$ make build-docker VERSION="tegola-dev"
 ```
 
 #### Configure tegola server
 
 ```bash
-$ git clone https://github.com/johngian/openmaptiles-tegola.git
+$ export TOOLS_VERSION="tegola-dev"
 $ cd vendor/openmaptiles
 $ make start-db
 $ make list-geofabrik      # List all areas available to download
