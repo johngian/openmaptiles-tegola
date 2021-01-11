@@ -49,7 +49,7 @@ $ cat build/tegola.toml
 
 ```bash
 $ cd vendor/openmaptiles
-$ make start-tegola
+$ docker-compose up tegola
 ```
 
 ## Notes
