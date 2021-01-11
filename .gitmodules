@@ -2,3 +2,7 @@
 	path = vendor/openmaptiles-tools
 	url = https://github.com/johngian/openmaptiles-tools.git
 	branch = tegola-config
+[submodule "vendor/tegola"]
+	path = vendor/tegola
+	url = https://github.com/johngian/tegola.git
+	branch = mvt-fixes
