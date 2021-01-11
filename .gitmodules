@@ -1,0 +1,4 @@
+[submodule "vendor/openmaptiles-tools"]
+	path = vendor/openmaptiles-tools
+	url = https://github.com/johngian/openmaptiles-tools.git
+	branch = tegola-config
