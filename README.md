@@ -31,18 +31,37 @@ $ cd vendor/openmaptiles-tools
 $ make build-docker VERSION="tegola-dev"
 ```
 
-#### Configure tegola server
+#### Build tegola server image
 
 ```bash
-$ export TOOLS_VERSION="tegola-dev"
+$ cd vendor/tegola
+$ docker build . -t tegola:latest
+```
+
+#### Configure tegola server
+
+There is a quickstart script that runs a similar sequence of `make` aiming to generate tiles
+in `MBTiles` format. Just for better understanding of the internals here is a list of commands
+that generate our PostGIS data and our tegola config (heavily based on `quickstart.sh`).
+
+```bash
 $ cd vendor/openmaptiles
-$ make start-db
-$ make list-geofabrik      # List all areas available to download
-$ make download area=planet   # Planet takes long time to load. Use a different area for dev purposes
-$ make import-osm
-$ make import-borders
-$ make import-wikidata
-$ make build-tegola-config
+$ make start-db                                        # Start PostGIS server
+$ make list-geofabrik                                  # List all areas available to download
+$ make download area=planet                            # Planet takes long time to load. Use a different area for dev purposes
+$ make all                                             # Bootstraps configuration files
+$ make import-data                                     # Import natural earth data, water polygons, lake lines
+$ make import-osm                                      # Import OSM data in PostGIS using imposm3
+$ make import-borders                                  # Import border geometries PostGIS
+$ make import-wikidata                                 # Import wikidata in PostGIS
+$ make import-sql                                      # Run SQL scripts for postprocessing
+$ make analyze-db                                      # Analyze PostGIS tables
+$ make test-perf-null                                  # Testing PostgreSQL tables to match layer definitions metadata
+$ make build/tegola.toml TOOLS_VERSION="tegola-dev"    # Generate the tegola config based on the OpenMapTiles schema queries
+```
+
+The tegola configuration is under `build/`.
+```bash
 $ cat build/tegola.toml
 ```
 
