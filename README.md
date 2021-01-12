@@ -20,6 +20,7 @@ Fetch git submodules:
 
 ```bash
 $ git clone https://github.com/johngian/openmaptiles-tegola.git
+$ cd openmaptiles-tegola
 $ git submodule update --init
 ```
 
